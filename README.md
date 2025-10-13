@@ -41,12 +41,14 @@ To develop a robust, trusted system for automated data sharing among safeguardin
 - Authorisation: Automatable decision rules are deployed to govern data sharing.
 - Logging: There is robust logging of all enquiries and responses, providing a clear audit trail and insights for reporting.
 - Transparency: Where it is appropriate and safe to do so, we should notify relevant parties about data sharing.
+- Security: IT systems meet relevant cyber security standards.
+- Robust data matching: systems are able to identify a person accurately so the results of data linkage are comparable between systems (Note: Matching across Social Care is the subject of an upcoming workshop)
 
-## Infomation Governance Framework components
+## Information Governance Framework components
 
 Distilling the above into a set of deliverable components:
 
-1. A specification for attribute based access control
+1. Defining attribute based access control
 
     This is a set of decision rules which permit systems to share relevant data in specific conditions. It encodes the information in Data Sharing Agreements in such a way that a machine can interpret a request, check against the business rules and respsond appropriately.
 
@@ -55,91 +57,18 @@ Distilling the above into a set of deliverable components:
 
 2. A specification for making a request including the party, data requested, purpose and context
 
-3. Agreed logging policy for requests and responses, including transparency and audit measures.
+    This overlaps with the API request and response specification in the data exchange standard repository.
+
+3. Controlled vocabularies to standardise the reasons for a request and links to data sharing agreements.​
 
 
+4. Agreed logging policy for requests and responses, including transparency and audit measures.
 
-Draft a specification for
-
-​
-
-Create draft vocabularies to standardise the
-reasons for a request and links to DSA​
-
-​
-
-A technical recommendation for implementing automated information governance
+5. A technical recommendation for implementing automated information governance
 
 
 
 
-# Formulating a MAIS data request for automated Information Governance...
-
-Considering a Section 47 enquiry in children's social care, which mandates that local authorities initiate enquiries when there is reasonable cause to suspect a child is suffering, or is likely to suffer, significant harm.
-
-
-
-Example: A basic s47 request at the highest level - do you know this person?
-
-```mermaid
----
-config:
-  look: handDrawn
----
-
-
-flowchart LR
-
-    subgraph details1 [Assumed through <br>normal IT security]
-    end
-
-    subgraph details2 [Link to our <br>Organisations <br>register]
-    end
-
-    subgraph details3 [" "]
-        direction TB
-        J[Child protection enquiry <br>under section 47] ~~~ K[General safeguarding <br>enquiries] ~~~ L[Already open]
-    end
-
-    subgraph details4 [" "]
-        direction TB
-        M[Is this person <br>known to you?] ~~~ N[Is this person <br>open to you?]
-    end
-
-    subgraph details5 [Link to our <br>person specification]
-    end
-
-    A --- details1
-    B --- details2
-    C --- details3
-    D --- details4
-    E --- details5
-
-    A[Authorised system user] --using a--> B[Recognised system] --makes a--> C[Reason for the request]
-    C --enquiry for--> D[Specified information] --about--> E["Subject (person of interest)"]
-
-    style A fill:#ffd700
-    style B fill:#ffd700
-    style C fill:#ffd700
-    style D fill:#ffd700
-    style E fill:#ffd700
-
-```
-
-Assumptions:
-
-- IT systems are recognised and validated, cyber security in place.
-- Matching or searching systems for a person is appropriate / robust / comparable between systems (Note: Matching across Social Care is the subject of an upcoming workshop)
-- All the above conditions are met.
-
-# Next Steps
-
-
-Actions:
-- Define the decision rules which permit systems to share relevant data in specific conditions
-- Testing if the above pattern can extend to other use cases
-- Create draft vocabularies for the reasons for a request
-- Propose a technical recommendation for implementing automated information governance
 
 
 
