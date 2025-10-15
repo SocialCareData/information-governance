@@ -95,3 +95,11 @@ Sharing with other partners (e.g. police, education):
 
  Technical matters:
  - For machine to machine data sharing, how do we anticipate API certificate/key management would work in a decentralised model? As we move into testing, we will develop and test approaches to this and related challenges.
+
+### Standards for Information Governance
+
+1. [Machine-Readable Sharing Agreements and Policies](dsa.md)
+2. [Formulating an Information Request](request.md)
+3. [Determine Validity and Respond / logging and auditing](decide&log.md)
+* [Context](context.md)
+* [Research](README.md)
