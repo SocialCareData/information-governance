@@ -37,4 +37,4 @@ However these are only limited examples of these standards (ODRL and DPV) in use
 2. [Formulating an Information Request](request.md)
 3. [Determine Validity and Respond / logging and auditing](decide&log.md)
 * [Context](context.md)
-* [Research](readme.md)
+* [Research](README.md)
