@@ -33,4 +33,4 @@ A request for information must be a structured assertion (Request Object) that e
 2. [Formulating an Information Request](request.md)
 3. [Determine Validity and Respond / logging and auditing](decide&log.md)
 * [Context](context.md)
-* [Research](readme.md)
+* [Research](README.md)
