@@ -1,4 +1,12 @@
-# Determine Validity and Respond (The Decision)
+# Information governance
+
+## Status
+
+Version 0.1 - intial
+
+Effective Date: 2025-10-09
+
+## Determine Validity and Respond (The Decision)
 
 Validity determination is managed by the recipient of requests using a  Policy Decision Point (PDP) service.
 
@@ -10,7 +18,7 @@ The PDP must be able to:
 
 It should be noted that the PDP’s role is to determine if a request is valid against a data sharing agreement. **It will not assess the risk of sharing data.** This risk judgement will need to be made as part of a subsequent matching process if data relating to an individual is identified.
 
-# Logging and Auditing
+## Logging and Auditing
 
 All activities must be logged in a transparent and auditable manner using a standardised approach designed to record the history and flow of data actions.
 
