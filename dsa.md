@@ -35,4 +35,4 @@ The table below proposes a schema for encoding a data sharing agreement, this is
 2. [Formulating an Information Request](request.md)
 3. [Determine Validity and Respond / logging and auditing](decide&log.md)
 * [Context](context.md)
-* [Research](readme.md)
+* [Research](README.md)
