@@ -28,3 +28,11 @@ The table below proposes a schema for encoding a data sharing agreement, this is
 | DataRecipientResponsibilities  | 0, Many (May) | Code | These are actions the Recipient must perform. For example, the Permission to access the data may have a Duty to delete the data after the agreement duration. | odrl:Duty	  |
 | SecurityMeasure | 0, Many (May) | Code | A Permission to reproduce the data may be conditioned on a Duty to encrypt the copies, constrained by specific encryption algorithms (e.g., AES-256) | odrl:Duty \+ Constraint |
 | LegalCompliance  | 0, Many (May) | Code | Compliance with specific regulations (e.g., GDPR) can be modeled as a Constraint on all rules. | odrl:Constraint |
+
+### Standards for Information Governance
+
+1. [Machine-Readable Sharing Agreements and Policies](dsa.md)
+2. [Formulating an Information Request](request.md)
+3. [Determine Validity and Respond / logging and auditing](decide&log.md)
+* [Context](context.md)
+* [Research](readme.md)
