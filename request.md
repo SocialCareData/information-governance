@@ -26,3 +26,11 @@ A request for information must be a structured assertion (Request Object) that e
 | Context | 1 (MUST) | Object | The unique URI or ID of the existing policy or data sharing agreement  | Context Check: Enables the receiving system to retrieve the specific policy to evaluate the request against its rules. |
 | ↳Context.Value | 1 (MUST) | String | The single unique identifier of the context (Policy/DSA) |  |
 | ↳Context.System | 1 (MUST) | URI | URI of catalogue containing the context (Policy/DSA) |  |
+
+### Standards for Information Governance
+
+1. [Machine-Readable Sharing Agreements and Policies](dsa.md)
+2. [Formulating an Information Request](request.md)
+3. [Determine Validity and Respond / logging and auditing](decide&log.md)
+* [Context](context.md)
+* [Research](readme.md)
