@@ -33,8 +33,8 @@ However these are only limited examples of these standards (ODRL and DPV) in use
 
 ### Standards for Information Governance
 
-1. [Machine-Readable Sharing Agreements and Policies]()
-2. [Formulating an Information Request]()
-3. [Determine Validity and Respond / logging and auditing]()
+1. [Machine-Readable Sharing Agreements and Policies](dsa.md)
+2. [Formulating an Information Request](request.md)
+3. [Determine Validity and Respond / logging and auditing](decide&log.md)
 
 
