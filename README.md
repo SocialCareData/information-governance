@@ -1,6 +1,8 @@
 # Information governance
-Version 0.1 - intial
+Version 0.1 - Initial
+
 Effective Date: 2025-10-09
+
 This version reflects discussions from the MAIS Standards Working Group on 8th October 2025, where we reviewed the output of the earlier deep dive.
 
 ## Purpose
