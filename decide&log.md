@@ -1,11 +1,3 @@
-# Information governance
-
-## Status
-
-Version 0.1 - intial
-
-Effective Date: 2025-10-09
-
 ## Determine Validity and Respond (The Decision)
 
 Validity determination is managed by the recipient of requests using a  Policy Decision Point (PDP) service.

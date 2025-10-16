@@ -1,10 +1,3 @@
-# Information governance
-
-## Status
-
-Version 0.1 - intial
-
-Effective Date: 2025-10-09
 ## Formulating an Information Request
 
 A request for information must be a structured assertion (Request Object) that explicitly links the requested action to a valid, pre-defined data sharing context.  The Request Object will replace the Reason in the data exchange specification. The Request Object must include the following information and be structured as shown in the table below

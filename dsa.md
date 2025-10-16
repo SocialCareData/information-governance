@@ -1,10 +1,3 @@
-# Information governance
-
-## Status
-
-Version 0.1 - intial
-
-Effective Date: 2025-10-09
 ## Machine-Readable Sharing Agreements and Policies
 
 Data Sharing agreements and policies provide the context for data sharing they define:

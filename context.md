@@ -1,12 +1,4 @@
-# Information governance
-
-## Status
-
-Version 0.1 - intial
-
-Effective Date: 2025-10-09
-
-## **Context**
+## Context
 
 Enabling automated information governance is critical to enabling data exchange at scale.
 
