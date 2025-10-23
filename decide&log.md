@@ -29,11 +29,3 @@ An Immutable Log / Distributed Ledger could be used to store a complete audit tr
 This could use W3C PROV-O (Provenance Ontology) or similar to ensure every key step (Request, Decision, Data Release) is logged as an Activity that involved specific Agents (Parties 1 & 2\) and affected Entities (The Request, The Policy, and The Data).
 
 Further work is required to develop a comprehensive standard for logging and auditing MAIS requests.
-
-### Standards for Information Governance
-
-1. [Machine-Readable Sharing Agreements and Policies](dsa.md)
-2. [Formulating an Information Request](request.md)
-3. [Determine Validity and Respond / logging and auditing](decide&log.md)
-* [Context](context.md)
-* [Research](README.md)
