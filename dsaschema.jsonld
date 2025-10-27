@@ -1,185 +1,131 @@
 {
-    "@context": {
-        "@vocab": "https://socialcaredata.github.io/spec/",
-        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-        "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "sh": "http://www.w3.org/ns/shacl#",
-        "odrl": "http://www.w3.org/ns/odrl/2/"
+  "@context": {
+    "@vocab": "https://socialcaredata.github.io/spec/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+  },
+
+  "@id": "DSAShape",
+  "@type": "sh:NodeShape",
+  "rdfs:label": "Data Sharing Agreement",
+  "rdfs:comment": "Machine-readable data sharing agreement/policy",
+  "sh:targetClass": "DSA",
+
+  "@graph": [
+    {
+      "@id": "IdentifierShape",
+      "@type": "sh:NodeShape",
+      "sh:property": [
+        { "sh:path": "value",  "sh:datatype": "xsd:string",  "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "system", "sh:datatype": "xsd:anyURI", "sh:minCount": 1, "sh:maxCount": 1 }
+      ]
+    }
+  ],
+
+  "sh:property": [
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "URI",
+      "sh:datatype": "xsd:anyURI",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "rdfs:comment": "URI of the DSA (linking to the machine-readable copy)"
     },
-    "@type": "rdfs:Class",
-    "rdfs:label": "DSA",
-    "rdfs:comment": "Data Sharing Agreement schema aligned to dsa.md with ODRL rule node shapes",
-    "sh:property": [
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "URI",
-            "sh:datatype": "xsd:anyURI",
-            "sh:minCount": 1,
-            "sh:maxCount": 1,
-            "rdfs:seeAlso": "odrl:policy"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "DataProviderCatalogueID",
-            "sh:datatype": "xsd:string",
-            "sh:minCount": 1,
-            "rdfs:seeAlso": "odrl:assigner"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "DataRecipientCatalogueID",
-            "sh:datatype": "xsd:string",
-            "sh:minCount": 1,
-            "rdfs:seeAlso": "odrl:assignee"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "Data",
-            "sh:minCount": 1,
-            "sh:or": [
-                {"sh:datatype": "xsd:string"},
-                {"sh:datatype": "xsd:anyURI"}
-            ],
-            "rdfs:seeAlso": "odrl:target"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "Purpose",
-            "sh:datatype": "xsd:string",
-            "sh:minCount": 1,
-            "sh:nodeKind": "sh:IRI",
-            "sh:class": "https://socialcaredata.github.io/spec/controlled-vocabularies/DSAPurpose",
-            "rdfs:seeAlso": "odrl:purpose"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "StartDate",
-            "sh:datatype": "xsd:dateTime",
-            "sh:minCount": 1,
-            "rdfs:seeAlso": "odrl:dateTime"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "EndDate",
-            "sh:datatype": "xsd:dateTime",
-            "sh:minCount": 1,
-            "rdfs:seeAlso": "odrl:until"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "PermittedUse",
-            "sh:minCount": 0,
-            "sh:node": {
-                "@type": "rdfs:Class",
-                "rdfs:label": "ODRL Permission",
-                "sh:property": [
-                    {
-                        "sh:path": "action",
-                        "sh:nodeKind": "sh:IRI",
-                        "sh:minCount": 1,
-                        "rdfs:seeAlso": "odrl:action"
-                    },
-                    {
-                        "sh:path": "target",
-                        "sh:nodeKind": "sh:IRI",
-                        "sh:minCount": 1,
-                        "rdfs:seeAlso": "odrl:target"
-                    },
-                    {
-                        "sh:path": "assignee",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:assignee"
-                    },
-                    {
-                        "sh:path": "constraint",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:constraint"
-                    }
-                ]
-            },
-            "rdfs:seeAlso": "odrl:permission"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "Restrictions",
-            "sh:minCount": 0,
-            "sh:node": {
-                "@type": "rdfs:Class",
-                "rdfs:label": "ODRL Prohibition",
-                "sh:property": [
-                    {
-                        "sh:path": "action",
-                        "sh:nodeKind": "sh:IRI",
-                        "sh:minCount": 1,
-                        "rdfs:seeAlso": "odrl:action"
-                    },
-                    {
-                        "sh:path": "target",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:target"
-                    },
-                    {
-                        "sh:path": "assigner",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:assigner"
-                    },
-                    {
-                        "sh:path": "constraint",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:constraint"
-                    }
-                ]
-            },
-            "rdfs:seeAlso": "odrl:prohibition"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "DataRecipientResponsibilities",
-            "sh:minCount": 0,
-            "sh:node": {
-                "@type": "rdfs:Class",
-                "rdfs:label": "ODRL Duty",
-                "sh:property": [
-                    {
-                        "sh:path": "action",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:duty"
-                    },
-                    {
-                        "sh:path": "constraint",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:constraint"
-                    }
-                ]
-            },
-            "rdfs:seeAlso": "odrl:duty"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "SecurityMeasure",
-            "sh:minCount": 0,
-            "sh:node": {
-                "@type": "rdfs:Class",
-                "rdfs:label": "Security Measure",
-                "sh:property": [
-                    {
-                        "sh:path": "method",
-                        "sh:datatype": "xsd:string"
-                    },
-                    {
-                        "sh:path": "constraint",
-                        "sh:nodeKind": "sh:IRI",
-                        "rdfs:seeAlso": "odrl:constraint"
-                    }
-                ]
-            },
-            "rdfs:seeAlso": ["odrl:duty", "odrl:constraint"]
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "LegalCompliance",
-            "sh:nodeKind": "sh:IRI",
-            "rdfs:seeAlso": "odrl:constraint"
-        }
-    ]
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "DataProviderCatalogueID",
+      "sh:minCount": 1,
+      "sh:node": "IdentifierShape",
+      "rdfs:comment": "The party granting the rights (assigner); 1..Many",
+      "rdfs:seeAlso": "odrl:assigner"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "DataRecipientCatalogueID",
+      "sh:minCount": 1,
+      "sh:node": "IdentifierShape",
+      "rdfs:comment": "The party receiving the rights (assignee); 1..Many",
+      "rdfs:seeAlso": "odrl:assignee"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "Data",
+      "sh:datatype": "xsd:string",
+      "sh:minCount": 1,
+      "rdfs:comment": "Description or URI of the asset; 1..Many allowed",
+      "rdfs:seeAlso": "odrl:target"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "Purpose",
+      "sh:datatype": "xsd:string",
+      "sh:minCount": 1,
+      "rdfs:comment": "DSAPurpose (code list); 1..Many allowed",
+      "rdfs:seeAlso": "odrl:purpose"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "StartDate",
+      "sh:datatype": "xsd:dateTime",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "rdfs:seeAlso": "odrl:dateTime"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "EndDate",
+      "sh:datatype": "xsd:dateTime",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "rdfs:seeAlso": "odrl:until"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "PermittedUse",
+      "sh:datatype": "xsd:string",
+      "rdfs:comment": "Code list; 1..Many allowed",
+      "rdfs:seeAlso": "odrl:permission"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "Restrictions",
+      "sh:datatype": "xsd:string",
+      "rdfs:comment": "Code list; 0..Many allowed",
+      "rdfs:seeAlso": "odrl:prohibition"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "DataRecipientResponsibilities",
+      "sh:datatype": "xsd:string",
+      "rdfs:comment": "Code list (duties on assignee); 0..Many allowed",
+      "rdfs:seeAlso": "odrl:duty"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "SecurityMeasure",
+      "sh:datatype": "xsd:string",
+      "rdfs:comment": "Code list; can be modeled as Duty with Constraint; 0..Many allowed",
+      "rdfs:seeAlso": "odrl:constraint"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "LegalCompliance",
+      "sh:datatype": "xsd:string",
+      "rdfs:comment": "Code list of legal regimes or clauses; 0..Many allowed",
+      "rdfs:seeAlso": "odrl:constraint"
+    }
+  ]
 }

@@ -1,155 +1,106 @@
 {
-    "@context": {
-        "@vocab": "https://socialcaredata.github.io/spec/",
-        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-        "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "sh": "http://www.w3.org/ns/shacl#",
-        "odrl": "http://www.w3.org/ns/odrl/2/"
+  "@context": {
+    "@vocab": "https://socialcaredata.github.io/spec/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+  },
+
+  "@id": "RequestShape",
+  "@type": "sh:NodeShape",
+  "rdfs:label": "Request",
+  "rdfs:comment": "A request for information",
+  "sh:targetClass": "Request",
+
+  "@graph": [
+    {
+      "@id": "IdentifierShape",
+      "@type": "sh:NodeShape",
+      "sh:property": [
+        { "sh:path": "value",  "sh:datatype": "xsd:string",  "sh:minCount": 1, "sh:maxCount": 1 },
+        { "sh:path": "system", "sh:datatype": "xsd:anyURI", "sh:minCount": 1, "sh:maxCount": 1 }
+      ]
+    }
+  ],
+
+  "sh:property": [
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "Type",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:datatype": "xsd:string",
+      "sh:description": "RequestTypeCode (controlled vocabulary)"
     },
-    "@type": "rdfs:Class",
-    "rdfs:label": "Request",
-    "rdfs:comment": "A request for information",
-    "sh:property": [
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "Type",
-            "sh:minCount": 1,
-            "sh:maxCount": 1,
-            "sh:node": {
-                "@type": "rdfs:Class",
-                "rdfs:label": "ODRL Action",
-                "rdfs:comment": "An ODRL-style action node (maps to odrl:action).",
-                "sh:property": [
-                    {
-                        "@type": "sh:PropertyShape",
-                        "sh:path": "id",
-                        "sh:datatype": "xsd:anyURI",
-                        "sh:minCount": 1,
-                        "rdfs:seeAlso": "odrl:action"
-                    },
-                    {
-                        "@type": "sh:PropertyShape",
-                        "sh:path": "label",
-                        "sh:datatype": "xsd:string"
-                    },
-                    {
-                        "@type": "sh:PropertyShape",
-                        "sh:path": "description",
-                        "sh:datatype": "xsd:string"
-                    }
-                ]
-            },
-            "rdfs:seeAlso": "odrl:action"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "Identifier",
-            "sh:minCount": 1,
-            "sh:maxCount": 1,
-            "sh:class": {
-                "@type": "rdfs:Class",
-                "sh:property": [
-                    {
-                        "sh:path": "value",
-                        "sh:datatype": "xsd:string",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1
-                    },
-                    {
-                        "sh:path": "system",
-                        "sh:datatype": "xsd:anyURI",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1
-                    }
-                ]
-            }
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "DateStamp",
-            "sh:datatype": "xsd:dateTime",
-            "sh:minCount": 1,
-            "sh:maxCount": 1
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "RequesterIdentifier",
-            "sh:minCount": 1,
-            "sh:maxCount": 1,
-            "sh:class": {
-                "@type": "rdfs:Class",
-                "sh:property": [
-                    {
-                        "sh:path": "value",
-                        "sh:datatype": "xsd:string",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1
-                    },
-                    {
-                        "sh:path": "system",
-                        "sh:datatype": "xsd:anyURI",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1
-                    }
-                ]
-            }
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "RequestedData",
-            "sh:minCount": 1,
-            "sh:maxCount": 1,
-            "sh:class": {
-                "@type": "rdfs:Class",
-                "sh:property": [
-                    {
-                        "sh:path": "dataCategories",
-                        "sh:datatype": "xsd:string",
-                        "sh:nodeKind": "sh:IRI",
-                        "sh:class": "https://socialcaredata.github.io/spec/controlled-vocabularies/RequestDataCategoriesCode"
-                    },
-                    {
-                        "sh:path": "Query",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1,
-                        "rdfs:seeAlso": "odrl:target"
-                    }
-                ]
-            }
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "AssertedPurpose",
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "Identifier",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:node": "IdentifierShape"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "DateStamp",
+      "sh:datatype": "xsd:dateTime",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:description": "ISO8601 DateTime"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "RequesterIdentifier",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:node": "IdentifierShape",
+      "rdfs:comment": "Verifiable identifier/credential of the requester"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "RequestedData",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:node": {
+        "@type": "sh:NodeShape",
+        "sh:property": [
+          {
+            "sh:path": "dataCategories",
             "sh:datatype": "xsd:string",
+            "sh:description": "RequestDataCategoriesCode (DPV-aligned); 0..Many allowed"
+          },
+          {
+            "sh:path": "Query",
             "sh:minCount": 1,
             "sh:maxCount": 1,
-            "sh:nodeKind": "sh:IRI",
-            "sh:class": "https://socialcaredata.github.io/spec/controlled-vocabularies/RequestAssertedPurposeCode",
-            "rdfs:seeAlso": "odrl:purpose"
-        },
-        {
-            "@type": "sh:PropertyShape",
-            "sh:path": "SharingPolicyIdentifier",
-            "sh:minCount": 1,
-            "sh:maxCount": 1,
-            "sh:class": {
-                "@type": "rdfs:Class",
-                "sh:property": [
-                    {
-                        "sh:path": "value",
-                        "sh:datatype": "xsd:string",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1
-                    },
-                    {
-                        "sh:path": "system",
-                        "sh:datatype": "xsd:anyURI",
-                        "sh:minCount": 1,
-                        "sh:maxCount": 1
-                    }
-                ]
-            },
-            "rdfs:seeAlso": "odrl:policy"
-        }
-    ]
+            "sh:nodeKind": "sh:BlankNodeOrIRI",
+            "rdfs:seeAlso": "odrl:target"
+          }
+        ]
+      }
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "AssertedPurpose",
+      "sh:datatype": "xsd:string",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:description": "RequestAssertedPurposeCode (DPV-aligned)",
+      "rdfs:seeAlso": "odrl:purpose"
+    },
+
+    {
+      "@type": "sh:PropertyShape",
+      "sh:path": "SharingPolicyIdentifier",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "sh:node": "IdentifierShape",
+      "rdfs:seeAlso": "odrl:policy"
+    }
+  ]
 }
