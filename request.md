@@ -9,18 +9,14 @@ A request for information must be a structured assertion (Request Object) that e
 
 | Field | Cardinality | Data Type and format | Description | Use |
 | :---- | :---- | :---- | :---- | :---- |
-|`Request.Type` | 1 (MUST) | `RequestTypeCode` | The type of request |  |
-|`Request.Identifier` | 1 (MUST) | Object | Unique identifier of the request | Logging and auditing |
+|`Request.Identifier` | 1 (MUST) | **Object** | Unique identifier of the request | Logging and auditing. Autofilled. |
 |↳ `Request.Identifier.value` | 1 (MUST) | String | The single unique identifier attached to the request. |  |
 |↳ `Request.Identifier.System` | 1 (MUST) | URI | System that the identifier adheres to|  |
-|`Request.DateStamp` | 1 (MUST) | ISO8601 DateTime (`YYYY-MM-DDHH:mm:ss`) | DateTime of request | Logging and auditing |
-|`Request.RequesterIdentifier` | 1 (MUST) | Object | The verifiable identity of the party making the request. | Authorisation check: to ensure the entity is the permitted organisation defined in the policy. |
-|↳ `Request.RequesterIdentifier.value` | 1 (MUST) | String | The single unique identifier of the requester. |  |
-|↳ `Request.requester.Identifier.system` | 1 (MUST) | URI | System that the identifier adheres to|  |
-|`Request.RequestedData`| 1 (MUST) | Object | Object that contain the query parameters of the request|  |
-|↳ `Request.RequestedData.dataCategories` | 0, Many (MAY) | `RequestDataCategoriesCode` | Lists the data types requested, using a standard vocabulary like **DPV**. NOTE: at least 2 data categories or resource identifiers must be provided. | Scope Check: Ensures the requested data is permitted for sharing by the policy. |
-|↳ `Request.RequestedData.Query` | 1 (MUST) | PersonQueryObject OR OTHER QUERY OBJECT | Search query | UNDEFINED|
-|`Request.AssertedPurpose` | 1 (MUST) | `RequestAssertedPurposeCode` | The specific, machine-readable reason for the request , using a standard vocabulary like DPV | Constraint Check: Ensures the purpose aligns with the permitted purpose in the policy. |
-|`Request.SharingPolicyIdentifier` | 1 (MUST) | Object | The unique URI or ID of the existing policy or data sharing agreement  | Context Check: Enables the receiving system to retrieve the specific policy to evaluate the request against its rules. |
-|↳ `Request.SharingPolicyIdentifier.value` | 1 (MUST) | String | The single unique identifier of the context (Policy/DSA) |  |
-|↳ `Request.SharingPolicyIdentifier.system` | 1 (MUST) | URI | URI of catalogue containing the context (Policy/DSA) |  |
+|`Request.DateStamp` | 1 (MUST) | ISO8601 DateTime (`YYYY-MM-DDTHH:mm:ss`) | DateTime of request | Logging and auditing. Autofilled. |
+|`Request.RequesterIdentifier` | 1 (MUST) | `APICatalogueID` | The verifiable identity of the party making the request. | Authorisation check: to ensure the entity is the permitted organisation defined in the policy. Autofilled. |
+|↳ `Request.RequesterIdentifier.value` | 1 (MUST) | String | The single unique identifier of the requester. | Autofilled. |
+|↳ `Request.requester.Identifier.system` | 1 (MUST) | URI | System that the identifier adheres to| Autofilled. |
+|`Request.RequestedData`| 1 (MUST) | **Object** | Object that contain the query parameters of the request| User choice. |
+|↳ `Request.RequestedData.Query` | 1 (MUST) | `Person` object | The identifying record of the Person the requester would like information from respondents about. Conforms to the `Person` (identification) standard. | |
+|`Request.AssertedPurpose` | 1 (MUST) | `SharingPurpose` | The reason for the request, using the same vocabulary as `SharingPolicy` | Constraint Check: Ensures the purpose aligns with the permitted purpose in the policy. User choice. |
+|`Request.SharingPolicies` | 1, Many (MUST) | `SharingPolicy` | One or more data sharing policies the request is made under the aegis of. | Context Check: Enables the receiving system to check the requester's copy of the policy corresponds to their copy of the policy and to evaluate the request against its rules. Autofilled based on user choice regarding breadth of search.|
