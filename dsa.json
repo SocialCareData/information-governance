@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "title": "Information Governance - Sharing Policy",
+    "version": "0.1",
+    "status": "draft",
+    "effectiveDate": "2025-10-01",
+    "description": "Schema for machine-readable Data Sharing agreements and policies based on ODRL."
+  },
+  "entities": [
+    {
+      "name": "SharingPolicy",
+      "description": "Defines the rules under which data can be used (Purpose, Roles, Controls).",
+      "fields": [
+        {
+          "name": "URI",
+          "type": "URI",
+          "cardinality": "1..1",
+          "description": "URI of the SharingPolicy (directly linking to a published machine readable copy).",
+          "alignment": { "odrl": "Policy URI" }
+        },
+        {
+          "name": "Identifier",
+          "type": "Object",
+          "cardinality": "1..1",
+          "description": "Unique ID object for the SharingPolicy.",
+          "children": [
+            {
+              "name": "value",
+              "type": "String",
+              "cardinality": "1..1",
+              "description": "The single unique identifier attached to the SharingPolicy."
+            },
+            {
+              "name": "System",
+              "type": "URI",
+              "cardinality": "1..1",
+              "description": "System that the identifier adheres to."
+            }
+          ]
+        },
+        {
+          "name": "Name",
+          "type": "String",
+          "cardinality": "1..1",
+          "description": "Name of the SharingPolicy."
+        },
+        {
+          "name": "Contact",
+          "type": "String",
+          "cardinality": "1..1",
+          "description": "Contact information for the document 'owner'."
+        },
+        {
+          "name": "Party",
+          "type": "Object",
+          "cardinality": "1..*",
+          "description": "Information about a single party in the sharing policy. Parties can be both providers and recipients.",
+          "alignment": { "odrl": "odrl:Assigner" },
+          "children": [
+            {
+              "name": "Name",
+              "type": "String",
+              "cardinality": "1..1",
+              "description": "The name of a party in the sharing policy."
+            },
+            {
+              "name": "CatalogueID",
+              "type": "APICatalogueID",
+              "cardinality": "1..*",
+              "description": "The ID of the party in the central API catalogue."
+            }
+          ]
+        },
+        {
+          "name": "Data",
+          "type": "String or URI",
+          "cardinality": "1..*",
+          "description": "A description of the specific data or data set (e.g., a database, file) that the rules apply to.",
+          "alignment": { "odrl": "odrl:Target (Asset)" }
+        },
+        {
+          "name": "Purpose",
+          "type": "SharingPurpose",
+          "cardinality": "1..*",
+          "description": "Used to dictate what kinds of request are valid under the policy (e.g., Section 47).",
+          "alignment": { "odrl": "odrl:Constraint on odrl:purpose" }
+        },
+        {
+          "name": "StartDate",
+          "type": "DateStamp",
+          "cardinality": "1..1",
+          "description": "Used to limit Permission rules to a specific time frame.",
+          "alignment": { "odrl": "odrl:dateTime" }
+        },
+        {
+          "name": "EndDate",
+          "type": "DateStamp",
+          "cardinality": "1..1",
+          "description": "Used to limit Permission rules to a specific time frame.",
+          "alignment": { "odrl": "odrl:until" }
+        },
+        {
+          "name": "PermittedUse",
+          "type": "Code",
+          "cardinality": "1..*",
+          "description": "Grants the right to perform an Action on the Asset, such as odrl:read, odrl:reproduce.",
+          "alignment": { "odrl": "odrl:Permission" }
+        },
+        {
+          "name": "Restrictions",
+          "type": "Code",
+          "cardinality": "0..*",
+          "description": "Explicitly forbids an Action. For example blocking dissemination by prohibiting odrl:transfer.",
+          "alignment": { "odrl": "odrl:Prohibition" }
+        },
+        {
+          "name": "DataRecipientResponsibilities",
+          "type": "Code",
+          "cardinality": "0..*",
+          "description": "Actions the Recipient must perform (e.g., Duty to delete data).",
+          "alignment": { "odrl": "odrl:Duty" }
+        },
+        {
+          "name": "SecurityMeasure",
+          "type": "Code",
+          "cardinality": "0..*",
+          "description": "Permissions conditioned on specific security measures (e.g., encryption).",
+          "alignment": { "odrl": "odrl:Duty + Constraint" }
+        },
+        {
+          "name": "LegalCompliance",
+          "type": "Code",
+          "cardinality": "0..*",
+          "description": "Compliance with specific regulations (e.g., GDPR).",
+          "alignment": { "odrl": "odrl:Constraint" }
+        }
+      ]
+    }
+  ]
+}

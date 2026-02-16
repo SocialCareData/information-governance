@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "title": "Information Governance - Request Object",
+    "version": "0.1",
+    "status": "draft",
+    "effectiveDate": "2025-10-01",
+    "description": "Schema for formulating an Information Request linking to a valid data sharing context."
+  },
+  "entities": [
+    {
+      "name": "Request",
+      "description": "A structured assertion linking a requested action to a data sharing context.",
+      "fields": [
+        {
+          "name": "Identifier",
+          "type": "Object",
+          "cardinality": "1..1",
+          "description": "Unique identifier of the request. Used for logging and auditing. Autofilled.",
+          "children": [
+            {
+              "name": "value",
+              "type": "String",
+              "cardinality": "1..1",
+              "description": "The single unique identifier attached to the request."
+            },
+            {
+              "name": "System",
+              "type": "URI",
+              "cardinality": "1..1",
+              "description": "System that the identifier adheres to."
+            }
+          ]
+        },
+        {
+          "name": "DateStamp",
+          "type": "DateTime",
+          "cardinality": "1..1",
+          "description": "DateTime of request (ISO8601 YYYY-MM-DDTHH:mm:ss). Used for logging and auditing. Autofilled."
+        },
+        {
+          "name": "RequesterIdentifier",
+          "type": "APICatalogueID",
+          "cardinality": "1..1",
+          "description": "The verifiable identity of the party making the request. Used for authorisation check. Autofilled.",
+          "children": [
+            {
+              "name": "value",
+              "type": "String",
+              "cardinality": "1..1",
+              "description": "The single unique identifier of the requester. Autofilled."
+            },
+            {
+              "name": "system",
+              "type": "URI",
+              "cardinality": "1..1",
+              "description": "System that the identifier adheres to. Autofilled."
+            }
+          ]
+        },
+        {
+          "name": "RequestedData",
+          "type": "Object",
+          "cardinality": "1..1",
+          "description": "Object that contain the query parameters of the request. User choice.",
+          "children": [
+            {
+              "name": "Query",
+              "type": "Person",
+              "cardinality": "1..1",
+              "description": "The identifying record of the Person the requester would like information from respondents about. Conforms to the Person (identification) standard.",
+              "reference": "https://socialcaredata.github.io/spec/person/"
+            }
+          ]
+        },
+        {
+          "name": "AssertedPurpose",
+          "type": "SharingPurpose",
+          "cardinality": "1..1",
+          "description": "The reason for the request, using the same vocabulary as SharingPolicy. Constraint Check: Ensures the purpose aligns with the permitted purpose in the policy. User choice."
+        },
+        {
+          "name": "SharingPolicy",
+          "type": "SharingPolicy",
+          "cardinality": "1..*",
+          "description": "One or more data sharing policies the request is made under the aegis of. Context Check. Autofilled based on user choice."
+        }
+      ]
+    }
+  ]
+}
